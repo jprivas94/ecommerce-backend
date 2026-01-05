@@ -12,14 +12,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Configuraciones básicas del servidor
-const corsOptions = process.env.NODE_ENV === 'production'
-  ? {
-      origin: process.env.FRONTEND_URL || 'https://tu-app.vercel.app',
-      credentials: true
-    }
-  : {}; // Permitimos todo en desarrollo
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production'
+    ? 'https://your-app.vercel.app'
+    : ['http://localhost:5173', 'http://localhost:5174'], // Agrega puertos usados por tu frontend en desarrollo
+  credentials: true
+};
 
 app.use(cors(corsOptions));
+
+// Parsear JSON en el body de las requests
+app.use(express.json());
 
 // Registramos todas las visitas al servidor
 app.use((req, res, next) => {
