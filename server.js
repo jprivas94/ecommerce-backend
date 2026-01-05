@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 // Configuraciones básicas del servidor
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production'
-    ? 'https://ecommerce-2026-nine.vercel.app'
+    ? process.env.FRONTEND_URL
     : ['http://localhost:5173', 'http://localhost:5174'], // Agrega puertos usados por tu frontend en desarrollo
   credentials: true
 };
